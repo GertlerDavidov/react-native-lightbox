@@ -129,6 +129,7 @@ export default class Lightbox extends Component {
           <TouchableHighlight
             underlayColor={this.props.underlayColor}
             onPress={this.open}
+            activeOpacity={1}
           >
             {this.props.children}
           </TouchableHighlight>
