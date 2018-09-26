@@ -95,7 +95,7 @@ export default class Lightbox extends Component {
           });
         }
         setTimeout(() => {
-          this._root && this.state.layoutOpacity.setValue(0);
+          this._root && this.state.layoutOpacity.setValue(1);
         });
       });
     });
