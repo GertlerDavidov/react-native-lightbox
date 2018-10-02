@@ -125,7 +125,6 @@ export default class Lightbox extends Component {
         style={this.props.style}
         onLayout={() => {}}
       >
-        <Animated.View style={{opacity: this.state.layoutOpacity}}>
           <TouchableHighlight
             underlayColor={this.props.underlayColor}
             onPress={this.open}
@@ -133,7 +132,6 @@ export default class Lightbox extends Component {
           >
             {this.props.children}
           </TouchableHighlight>
-        </Animated.View>
         {this.props.navigator ? false : <LightboxOverlay {...this.getOverlayProps()} />}
       </View>
     );
