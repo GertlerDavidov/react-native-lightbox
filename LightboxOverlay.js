@@ -136,7 +136,7 @@ export default class LightboxOverlay extends Component {
       target: {
         x: 0,
         y: 0,
-        opacity: 1,
+        opacity: 0.8,
       }
     });
 
