@@ -213,7 +213,7 @@ export default class LightboxOverlay extends Component {
       height: openVal.interpolate({inputRange: [0, 1], outputRange: [origin.height, WINDOW_HEIGHT]}),
     }];
 
-    const background = (<Animated.View style={[styles.background, { backgroundColor: backgroundColor }, lightboxOpacityStyle]}></Animated.View>);
+    const background = (<View style={[styles.background, { backgroundColor: backgroundColor, opacity: 0.8 }]}></View>);
     const header = (<Animated.View style={[styles.header, lightboxOpacityStyle]}>{(renderHeader ?
       renderHeader(this.close) :
       (
