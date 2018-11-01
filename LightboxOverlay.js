@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Animated, Dimensions, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, Animated, Dimensions, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const WINDOW_HEIGHT = Dimensions.get('window').height;
+const WINDOW_HEIGHT = (Platform.OS == 'ios' && (Dimensions.get('window').height === 812 || Dimensions.get('window').width === 812) ) ? Dimensions.get('window').height - 35 : Dimensions.get('window').height;
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const DRAG_DISMISS_THRESHOLD = 150;
 const STATUS_BAR_OFFSET = (Platform.OS === 'android' ? -25 : 0);
@@ -11,7 +11,7 @@ const isIOS = Platform.OS === 'ios';
 const styles = StyleSheet.create({
   background: {
     position: 'absolute',
-    top: 0,
+    top: (Platform.OS == 'ios' && (Dimensions.get('window').height === 812 || Dimensions.get('window').width === 812) ) ? 35 : 0,
     left: 0,
     width: WINDOW_WIDTH,
     height: WINDOW_HEIGHT,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   header: {
     position: 'absolute',
-    top: 0,
+    top: (Platform.OS == 'ios' && (Dimensions.get('window').height === 812 || Dimensions.get('window').width === 812) ) ? 35 : 0,
     left: 0,
     width: WINDOW_WIDTH,
     backgroundColor: 'transparent',
@@ -159,7 +159,7 @@ export default class LightboxOverlay extends Component {
       opacity: openVal.interpolate({inputRange: [0, 1], outputRange: [0, target.opacity]})
     };
 
-    
+
     const openStyle = [styles.open, {
       left:   openVal.interpolate({inputRange: [0, 1], outputRange: [origin.x, target.x]}),
       top:    openVal.interpolate({inputRange: [0, 1], outputRange: [origin.y + STATUS_BAR_OFFSET, target.y + STATUS_BAR_OFFSET]}),
@@ -184,11 +184,13 @@ export default class LightboxOverlay extends Component {
 
     if (this.props.navigator) {
       return (
-        <View>
-          {background}
-          {content}
-          {header}
-        </View>
+        <SafeAreaView>
+          <View>
+            {background}
+            {content}
+            {header}
+          </View>
+        </SafeAreaView>
       );
     }
 
