@@ -11,7 +11,7 @@ const isIOS = Platform.OS === 'ios';
 const styles = StyleSheet.create({
   background: {
     position: 'absolute',
-    top: (Platform.OS == 'ios' && (Dimensions.get('window').height === 812 || Dimensions.get('window').width === 812) ) ? 35 : 0,
+    top: 0,
     left: 0,
     width: WINDOW_WIDTH,
     height: WINDOW_HEIGHT,
